@@ -12,3 +12,20 @@ body {
     width: min-content;
     margin: 40px auto;
 }
+
+#play {
+    font-size: 16px;
+    padding: 10px 20px;
+    border-radius: 4px;
+    background-color: rgb(206, 206, 206);
+    border: solid 2px black;
+}
+
+button {
+    cursor: pointer;
+}
+
+#play:hover {
+    background-color: rgb(165, 165, 165);
+    cursor: pointer;
+}

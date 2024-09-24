@@ -31,18 +31,34 @@ const player = (function(symbol, name) {
     return {symbol, turn, name};
 });
 
+const ui = (function() {
+    const buttons = document.querySelectorAll(".btn");
+    const play = document.querySelector("#play");
+
+    function updateGame(b) {
+        let id = b.id;
+        gameBoard.writeMove(turn.symbol, parseInt(id));
+        gameBoard.checkWin(turn.symbol);
+    }
+
+    buttons.forEach(function(button) {
+        button.addEventListener("click", updateGame);
+    });
+})();
+
 const Game = (() => {
     let p1 = player('x', 'sai');
     let p2 = player('o', 'computer');
-    let turn = p1, index;
-    for (let i = 0; i < 9; i++) {
-        index = prompt(`enter index - ${turn.symbol}: `);
-        gameBoard.writeMove(turn.symbol, parseInt(index));
-        if (gameBoard.checkWin(turn.symbol)) {
-            console.log(`${turn.symbol} wins`);
-            break;
-        }
-        turn = (turn == p1) ? p2 : p1;
-    }
-    console.log(gameBoard.board)
+    let turn = p1;
+
+    // for (let i = 0; i < 9; i++) {
+    //     index = prompt(`enter index - ${turn.symbol}: `);
+    //     gameBoard.writeMove(turn.symbol, parseInt(index));
+    //     if (gameBoard.checkWin(turn.symbol)) {
+    //         console.log(`${turn.symbol} wins`);
+    //         break;
+    //     }
+    //     turn = (turn == p1) ? p2 : p1;
+    // }
+    // console.log(gameBoard.board)
 })();
