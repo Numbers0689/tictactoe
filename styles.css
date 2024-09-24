@@ -1,0 +1,14 @@
+body {
+    text-align: center;
+    width: 100vw;
+    justify-content: center;
+    font-family: serif;
+}
+
+#grid {
+    display: grid;
+    grid-template-columns: repeat(3, 100px);
+    grid-template-rows: repeat(3, 100px);
+    width: min-content;
+    margin: 40px auto;
+}

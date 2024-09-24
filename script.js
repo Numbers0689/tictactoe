@@ -15,15 +15,15 @@ const gameBoard = (function() {
     ];
 
     const checkWin = (symbol) => {
-        for (let c in winCombinations) {
-            if (board[c[0]] === symbol && symbol === board[c[1]] && symbol === board[c[2]]) return true;
+        for (let i = 0; i < 8; i++) {
+            if (board[winCombinations[i][0]] === symbol && symbol === board[winCombinations[i][1]] && symbol === board[winCombinations[i][2]]) return true;
         }
         return false;
     };
 
     const writeMove = (symbol, i) => board[i] = symbol;
     //return public var and funcs
-    return {checkWin, writeMove};
+    return {checkWin, writeMove, board};
 })();
 
 const player = (function(symbol, name) {
@@ -34,11 +34,15 @@ const player = (function(symbol, name) {
 const Game = (() => {
     let p1 = player('x', 'sai');
     let p2 = player('o', 'computer');
-    let symbol, turn = p1;
+    let turn = p1, index;
     for (let i = 0; i < 9; i++) {
         index = prompt(`enter index - ${turn.symbol}: `);
-        gameBoard.writeMove(turn.symbol, index);
+        gameBoard.writeMove(turn.symbol, parseInt(index));
+        if (gameBoard.checkWin(turn.symbol)) {
+            console.log(`${turn.symbol} wins`);
+            break;
+        }
         turn = (turn == p1) ? p2 : p1;
-        if (gameBoard.checkWin(turn.symbol)) console.log()
     }
+    console.log(gameBoard.board)
 })();
